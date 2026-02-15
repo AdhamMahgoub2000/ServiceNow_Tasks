@@ -1,0 +1,237 @@
+*{
+    margin:0;
+    font-family: Arial, sans-serif;
+    
+}
+.navbar{
+    background-color: rgb(29, 75, 136);
+    display: flex;
+    justify-content: space-between;
+    color:white;
+    align-items:center;
+    padding: 0px 20px;
+    margin :0;
+
+}
+.menuitem.active{
+    background-color:rgb(14, 88, 117);
+}
+.menuitem:hover{
+    background-color:rgb(14, 88, 117);
+}
+.menu{
+    display: flex;
+    list-style: none;   
+}
+.menuitem{
+    display: block;
+    padding :20 10;
+}
+.menu a{
+    color: white ;
+    text-decoration:none;
+}
+.menu-phone{
+    display: none;
+}
+.animation{
+    transition: transform 0.3s ease;
+}
+.animation:hover{
+    transform: translateY(-8px);
+}
+.center {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: nowrap;
+      }
+.slider{
+    padding-top:200;
+    color:rgb(29, 75, 136);
+    height:300px;
+    background-image: url("https://thumbs.dreamstime.com/b/black-friday-scene-crowded-malls-long-queues-online-shopping-deals-wooden-background-black-friday-scene-crowded-318363939.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align:center;
+
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(29, 75, 136);
+    padding: 5px 20px;
+    border-radius:35px;
+    text-decoration:none;
+    color:white;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    font-family: arial;
+
+}
+.btn.reciepes{
+    color:rgb(29, 75, 136);
+    padding:12;
+    line-height:5;
+    border-radius:15px;
+    text-decoration:none;
+    color:white;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+
+    height:20px;
+}
+
+.sub-title{
+    text-align:center;
+    padding:20;
+    margin-top:20;
+}
+.cards{
+    display:flex;
+    margin:20px;
+    text-align:center;
+    justify-content: center;
+    gap:15px;
+
+}
+.careers{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin:20px;
+    text-align:center;
+    justify-content: center;
+    gap:15px;
+}
+
+.card{
+    background-color:white;
+    width:160px;
+    height:250px;
+    line-height:2.5;
+    padding:30px;
+    border-radius:15px;
+    box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.career{
+    width: 700px;
+    display: flex;
+    background-color:white;
+    line-height:2.5;
+    padding:30px;
+    border-radius:15px;
+    box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+}
+.category-image{
+    width:70;
+    height:70;
+}
+.contact{
+    margin: 1%;
+    padding: 20px;
+    width: 50%;
+    display: block;
+    text-align: left;
+}
+.contact div{
+    align-items: left;
+}
+
+.contact-page-hero{
+    background-size: cover;
+    background-image: url(https://t3.ftcdn.net/jpg/05/30/96/04/360_F_530960431_c8fPd3HansYvrSJ4fJxZqp9OhjQmYoll.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(214, 214, 220);
+    height: 300px;
+}
+.contact-section{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    background-color: rgb(255, 255, 255);
+
+}
+.form-section{
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+.form-row {
+  display: flex;
+  align-items: center;   
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  width: 120px;          
+}
+
+.form-row input {
+  flex: 1;               
+  padding: 8px;
+}
+.our-info{
+    border-left: 1px solid black;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px ;
+
+    /* border-radius: 15px; */
+    /* background-color: rgb(199, 199, 199); */
+    /* box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2); */
+    margin: 50px;
+
+
+
+}
+.icon{
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+.privacy-policy{
+    
+    text-align: left;
+    padding: 25px;
+    background-color: white;
+    
+    margin-bottom: 420px;
+    width: 600px;
+
+}
+footer{
+    padding:20;
+    text-align:center;
+    color:white;
+    background-color:black;
+
+}
+@media screen and (max-width:600px) {
+    .menu{display: none;}
+    .menu-phone{display: flex;}
+    .navbar{height: 70px;}
+    .contact-section{
+    display: block;
+    justify-content: center;
+    gap: 100px;
+    background-color: rgb(255, 255, 255);
+
+}
+fieldset{
+    width: 50px;
+
+}
+}

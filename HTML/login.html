@@ -1,0 +1,186 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="This is a website" />
+    <title>FreshMart</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="background-color: rgb(255, 255, 255)">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: rgb(29, 75, 136)"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            >Fresh<span style="color: yellow">Mart</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="home.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bakery.html">Bakery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="dairy.html">Dairy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reciepes.html">Reciepes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="events.html">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="careers.html">Careers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="offers.html">Offers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="locations.html">Locations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="terms.html">Terms&Conditions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="container" style="width: auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center mt-5">
+          <h2>Welcome To FreshMart</h2>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div
+          class="col-12 shadow rounded overflow-hidden p-3 m-5"
+          style="width: 60%"
+        >
+          <form id="loginForm">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                onblur="checkEmail()"
+                required
+              />
+              <label for="floatingInput">Email address</label>
+            </div>
+            <span
+              id="email_error"
+              style="font-size: smaller; width: 100px"
+            ></span>
+            <div class="form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                onblur="checkPassword()"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <span
+              id="password_error"
+              style="font-size: smaller; width: 100px"
+            ></span>
+            <p></p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember" />
+              <label class="form-check-label" for="remember">
+                Remember Me
+              </label>
+            </div>
+            <p></p>
+            <button type="submit" class="btn w-100 btn-success fw-bold" style="background: linear-gradient(90deg, #1d4b88, #27ae60); border: none;">Login</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <footer style="margin-top:12% ;">
+      <p>© 2026 Your Company Name. All Rights Reserved.</p>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          checkEmail();
+          checkPassword();
+
+          let email_error = document.getElementById("email_error");
+          let password_error = document.getElementById("password_error");
+
+          if (!email_error.hidden || !password_error.hidden) {
+            event.preventDefault();
+          }
+        });
+      function checkEmail() {
+        let input = document.getElementById("floatingInput");
+        let email_error = document.getElementById("email_error");
+
+        if (input.value === "") {
+          email_error.textContent = "Email cannot be empty!";
+          email_error.style.color = "red";
+          email_error.hidden = false;
+        } else if (!input.value.includes("@")) {
+          email_error.textContent = "Enter a valid email!";
+          email_error.style.color = "red";
+          email_error.hidden = false;
+        } else {
+          email_error.hidden = true;
+        }
+      }
+
+      function checkPassword() {
+        let input = document.getElementById("floatingPassword");
+        let password_error = document.getElementById("password_error");
+        if (input.value === "") {
+          password_error.textContent = "Password cannot be empty!";
+          password_error.style.color = "red";
+          password_error.hidden = false;
+        } else if (input.value.length <= 6) {
+          password_error.textContent = "Password Must be More than 6 char!";
+          password_error.style.color = "red";
+          password_error.hidden = false;
+        } else {
+          password_error.hidden = true;
+        }
+      }
+    </script>
+  </body>
+</html>

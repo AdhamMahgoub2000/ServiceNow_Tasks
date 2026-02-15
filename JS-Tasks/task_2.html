@@ -1,0 +1,149 @@
+<html>
+  <body>
+    <script>
+      let setBookStatus = function (book) {
+        let bookStatus;
+        if (book.AvailableCopies > 2) bookStatus = "Available";
+        else if (book.AvailableCopies > 0) bookStatus = "Limited";
+        else bookStatus = "Out of stock";
+        book.BookStatus = bookStatus;
+      };
+      let searchBook = function (library, bookTitle) {
+        let requiredBook;
+        for (let book of library) {
+          if (book.BookTitle.toLowerCase() == bookTitle.toLowerCase()) {
+            requiredBook = book;
+            return requiredBook;
+          }
+        }
+        return null;
+      };
+      let addBook = function (library) {
+        let bookTitle = prompt("Enter the book title:");
+        let authorName, newbook;
+        if (!bookTitle) {
+          alert("Book Title Cannot be Empty");
+          return;
+        }
+        authorName = prompt("Enter Author Name:");
+        newbook = searchBook(library, bookTitle);
+        let numberCopies = parseInt(prompt("Enter No of Copies"));
+        if (numberCopies < 0) {
+          alert("No of copies Cannot be negative");
+          return;
+        }
+
+        if (!newbook) {
+          let book = {
+            BookTitle: bookTitle,
+            AuthorName: authorName,
+            AvailableCopies: numberCopies,
+            BorrowedCopies: 0,
+            borrowCount: 0,
+          };
+          setBookStatus(book);
+          library.push(book);
+        } else {
+          newbook.AvailableCopies += numberCopies;
+          alert(`the available copies is now ${newbook.AvailableCopies}`);
+        }
+      };
+      let borrowBook = function (library) {
+        let bookTitle = prompt("Enter the book title:");
+        if (!bookTitle) {
+          alert("Book Title Cannot be Empty");
+          return;
+        }
+        let requiredBook = searchBook(library, bookTitle);
+        if (!requiredBook) {
+          alert("Book is not found");
+          return;
+        }
+        if (requiredBook.AvailableCopies == 0) {
+          alert("No AvailableCopies");
+          return;
+        }
+        requiredBook.AvailableCopies--;
+        requiredBook.BorrowedCopies++;
+        requiredBook.borrowCount++;
+        setBookStatus(requiredBook);
+        alert("Book is Borrowed successfully");
+      };
+      let returnBook = function (library) {
+        let bookTitle = prompt("Enter the book title:");
+        if (!bookTitle) {
+          alert("Book Title Cannot be Empty");
+          return;
+        }
+        let requiredBook = searchBook(library, bookTitle);
+
+        if (!requiredBook) {
+          alert("Book is not found");
+          return;
+        }
+        if (requiredBook.BorrowedCopies == 0) {
+          alert("No BorrowedCopies");
+          return;
+        }
+        requiredBook.AvailableCopies++;
+        requiredBook.BorrowedCopies--;
+        setBookStatus(requiredBook);
+        alert("Book is returned successfully");
+      };
+      let calculateTotalBooks = function (library) {
+        let available = 0;
+        let borrowed = 0;
+        for (book of library) {
+          available += Number(book.AvailableCopies);
+          borrowed += Number(book.BorrowedCopies);
+        }
+        return [available, borrowed];
+      };
+      let showReport = function (library) {
+        let report = "";
+        if (library.length == 0) {
+          alert("The library is empty");
+          return;
+        }
+        for (book of library) {
+          report += `BookTitle :${book.BookTitle}\n
+          Book Author : ${book.AuthorName}\n
+          Available : ${book.AvailableCopies}\n
+          Borrowed : ${book.BorrowedCopies}\n
+          BookStatus : ${book.BookStatus}\n`;
+        }
+        let [totalAvailable, totalBorrowed] = calculateTotalBooks(library);
+        report += `Total Availbale : ${totalAvailable}\n
+        Total Borrowed: ${totalBorrowed}`;
+        alert(report);
+      };
+
+      let library = [];
+      let loopflag = true;
+      while (loopflag) {
+        let choice = prompt(
+          "Enter your Action:\n1-Add book\t2-Borrow book\n3- Return book\t4- Display library report\n5-exit ",
+        );
+        switch (choice) {
+          case "1":
+            addBook(library);
+            break;
+          case "2":
+            borrowBook(library);
+            break;
+          case "3":
+            returnBook(library);
+            break;
+          case "4":
+            showReport(library);
+            break;
+          case "5":
+            loopflag = false;
+            break;
+          default:
+            alert("please enter a valid choice");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="This is a website" />
+    <title>FreshMart</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="background-color: rgb(255, 255, 255)">
+    <header>
+      <nav class="navbar">
+        <div>
+          <span style="color: white">FRESH</span>
+          <span style="color: yellow">MART</span>
+        </div>
+
+        <ul class="menu">
+          <li class="menuitem"><a href="index.html">Home</a></li>
+          <li class="menuitem"><a href="">Shop</a></li>
+          <li class="menuitem"><a href="bakery.html">Bakery</a></li>
+          <li class="menuitem"><a href="dairy.html">Dairy</a></li>
+          <li class="menuitem"><a href="reciepes.html">Reciepes</a></li>
+          <li class="menuitem"><a href="careers.html">Careers</a></li>
+          <li class="menuitem"><a href="">Cart</a></li>
+          <li class="menuitem"><a href="">Categories</a></li>
+          <li class="menuitem"><a href="offers.html">Offers</a></li>
+          <li class="menuitem"><a href="events.html">Events</a></li>
+          <li class="menuitem">
+            <a href="privacy-policy.html">Privacy Policy</a>
+          </li>
+          <li class="menuitem active"><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="contact-page-hero">
+        <h1>Feel Free to Leave us a Message</h1>
+      </section>
+
+      <section class="contact-section">
+        <form class="form-section">
+          <fieldset class="contact" >
+            <legend>Enter your info</legend>
+            <div class="form-row" style="width: 50%">
+              <label for="Fullname">Fullname:</label>
+              <input
+                name="name"
+                type="text"
+                id="Fullname"
+                placeholder="ex:Adham Mahgoub ...."
+                onblur="checkName()"
+              />
+
+            </div>
+            <span id="name_error" style="font-size: smaller; width: 100px;"></span>
+            <div class="form-row" style="width: 50%">
+              <label for="email">Email:</label>
+              <input
+                name="email"
+                type="email"
+                id="email"
+                placeholder="example@info.com"
+                required
+                onblur="checkEmail()"
+              />
+            </div>
+            <span id="email_error" style="font-size: smaller; margin-bottom: 5px;"></span>
+            <div class="form-row" style="width: 50%">
+              <label for="message">Your Message:</label>
+              <input
+                name="message"
+                style="width: 300px; height: 150px"
+                type="text"
+                id="message"
+              />
+            </div>
+            <div style="width: 10px;">
+              <button type="submit">Send</button>
+            </div>
+          </fieldset>
+        </form>
+        <div class="our-info">
+          <div style="display: flex; gap: 10px">
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/006/697/974/small/mail-email-icon-template-black-color-editable-mail-email-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg"
+              alt="email"
+              class="icon"
+            />
+
+            <div>
+              <div>
+                <h4>Email</h4>
+                <p>example@info.com</p>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px">
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/003/720/476/small/phone-icon-telephone-icon-symbol-for-app-and-messenger-vector.jpg"
+              alt="email"
+              class="icon"
+            />
+
+            <div>
+              <div>
+                <h4>Phone number</h4>
+                <p>+20-1234-34-345</p>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px">
+            <img
+              src="https://icons.veryicon.com/png/o/miscellaneous/offerino-icons/instagram-53.png"
+              alt="instagram"
+              class="icon"
+            />
+            <div>
+              <div>
+                <h4>instagram</h4>
+                <p>any.account_5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Your Company Name. All Rights Reserved.</p>
+    </footer>
+    <script>
+      function checkName() {
+        let input = document.getElementById("Fullname");
+
+        if (input.value === "") {
+          name_error.textContent = "Name cannot be empty!";
+          name_error.style.color = "red";
+          name_error.hidden = false;
+        } else {
+          name_error.hidden = true;
+        }
+      }
+            function checkEmail() {
+        let input = document.getElementById("email");
+
+        if (input.value === "") {
+          email_error.textContent = "Email cannot be empty!";
+          email_error.style.color = "red";
+          email_error.hidden = false;
+        } else {
+          email_error.hidden = true;
+        }
+      }
+    </script>
+  </body>
+</html>

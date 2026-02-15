@@ -1,0 +1,63 @@
+<html>
+  <body>
+    <script>
+      let students = [];
+      let more_students;
+      do {
+        let student = {};
+        let name = prompt("Enter the Student Name:");
+        student.name = name;
+        let age = prompt("Enter the Student age:");
+        student.age = age;
+        let grades = [];
+        let gradelevel = [];
+        let input;
+        const minimum_grades = 3;
+        do {
+          input = prompt("Enter the grade:");
+          if (input == "stop") {
+            if (grades.length < minimum_grades) {
+              alert("you have to enter at least 3 grades");
+              continue;
+            } else {
+              break;
+            }
+          }
+          let gradeValue = parseFloat(input);
+          if (!input || input < 0 || input > 100 || isNaN(gradeValue)) {
+            alert("you entered wrong grade.");
+            continue;
+          }
+          grades.push(gradeValue);
+          if (gradeValue > 90) gradelevel.push("Excellent");
+          else if (gradeValue > 80) gradelevel.push("Very Good");
+          else if (gradeValue > 70) gradelevel.push(" Good");
+          else if (gradeValue > 60) gradelevel.push("Pass");
+          else gradelevel.push("Fail");
+        } while (true);
+        student.gradelevel = gradelevel;
+
+        student.grades = grades;
+        let sum = 0;
+        grades.forEach((n) => (sum += n));
+
+        let avg = sum / grades.length;
+        student.Avg = avg;
+        student.Max = Math.max(...grades);
+        student.Min = Math.min(...grades);
+        student["Student Status"] = avg >= 60 ? "Passed" : "Failed";
+        console.log(student);
+        console.log("The number of grades is " + student.grades.length);
+        students.push(student);
+        let student_report = `student name: ${student.name}\nstudent age: ${student.age}\nstudent avg grade:${student.Avg}\nstudent status: ${student["Student Status"]}\n`;
+        alert(student_report);
+        more_students = prompt("Do You want to Enter another student");
+      } while (more_students == "yes");
+      let report = "";
+      for (let stud of students) {
+        report += `Student Name is ${stud.name}\nStudent Grade Avg is ${stud.Avg}\n\n`;
+      }
+      alert(report);
+    </script>
+  </body>
+</html>
