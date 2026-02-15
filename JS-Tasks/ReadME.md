@@ -29,7 +29,7 @@ Features:
 
 Books are stored in an array and managed using DOM manipulation.
 
-### NOTE: AI was only used in the documentation and in the syntax of displaying the report as a table.**
+### NOTE: AI was only used in the documentation and in the syntax of displaying the report as a table.
 
 ## Screenshot
 
