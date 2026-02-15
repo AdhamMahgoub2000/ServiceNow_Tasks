@@ -4,8 +4,8 @@ This repository contains all the daily tasks and exercises for the **HTML, CSS, 
 
 ## Repository Structure
 ### 1. `webpages/`
-This folder includes all the HTML pages and CSS stylesheets for the practice websites created during the course. Each task or project is organized in its own subfolder or file for clarity.
+This folder includes all the HTML pages and CSS stylesheets for the practice websites created during the course.
 
 ### 2. `js-tasks/`
-This folder contains the JavaScript exercises and tasks assigned throughout the course. Each file corresponds to a specific task and demonstrates the JavaScript concepts learned in class.
+This folder contains the JavaScript exercises and tasks assigned throughout the course. Each file corresponds to a specific task.
 
