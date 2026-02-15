@@ -14,7 +14,9 @@ Features:
 • Allow entering multiple students
 • Display final report of all students
 
-⸻
+⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
+
+
 Task 2: Library Management System
 
 A simple system built using HTML, Bootstrap, and JavaScript.
@@ -33,7 +35,9 @@ Books are stored in an array and managed using DOM manipulation.
 
 ![Library System Screenshot](ScreenShots/ScreenShot.png)
 ![Library System Screenshot](ScreenShots/ScreenShot2.png)
-⸻
+
+
+⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
 Technologies Used
 • HTML
@@ -41,6 +45,9 @@ Technologies Used
 • Bootstrap 5
 • JavaScript
 
-⸻
+⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
-How to Run 1. Open the HTML file in a browser. 2. Follow the prompts to enter data. 3. View results using alerts or tables.
+How to Run 
+1. Open the HTML file in a browser. 
+2. Follow the prompts to enter data. 
+3. View results using alerts or tables.
