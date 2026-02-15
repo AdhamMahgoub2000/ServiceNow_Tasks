@@ -31,8 +31,8 @@ Books are stored in an array and managed using DOM manipulation.
 
 ## Screenshot
 
-![Library System Screenshot](/Screenshot 2026-02-15 at 8.39.21 PM.png)
-![Library System Screenshot](/Screenshot 2026-02-15 at 8.46.36 PM.png)
+![Library System Screenshot](ScreenShots/ScreenShot.png)
+![Library System Screenshot](ScreenShots/ScreenShot2.png)
 ⸻
 
 Technologies Used
