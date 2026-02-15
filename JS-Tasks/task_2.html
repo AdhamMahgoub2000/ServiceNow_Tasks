@@ -1,6 +1,190 @@
 <html>
+  <head>
+    <title>Library Managment System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-image: url("—Pngtree—an old bookcase in a_2760144.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
   <body>
+    <section class="d-flex justify-content-center">
+      <div
+        class="container m-3 card shadow mt-5"
+        style="
+          width: 60%;
+          height: 80%;
+          background-color: antiquewhite;
+          border-radius: 30px;
+        "
+      >
+        <div class="m-5 d-flex justify-content-center">
+          <h1>Library Managment System</h1>
+        </div>
+        <div class="row m-5">
+          <div class="col-12 d-flex justify-content-center">
+            <h3>Choose Your Desired Action</h3>
+          </div>
+        </div>
+        <div class="row m-5 d-block">
+          <div class="col-12 m-2">
+            <button
+              id="addBookbtn"
+              class="btn w-100 btn-success"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                border: none;
+              "
+              type="button"
+              onclick="ShowAdd()"
+            >
+              Add Book
+            </button>
+
+            <form id="addBookform" class="p-3 m-3" style="display: none">
+              <div class="form-floating m-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addTitle"
+                  required
+                />
+                <label for="addTitle">Book Title</label>
+              </div>
+              <div class="form-floating m-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addbookauthor"
+                  required
+                />
+                <label for="addbookauthor">Book Author</label>
+              </div>
+              <div class="form-floating m-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="addcopies"
+                  required
+                />
+                <label for="addcopies">No. of Copies</label>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-success fw-bold m-2"
+                style="
+                  background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                  border: none;
+                "
+              >
+                Add Book
+              </button>
+            </form>
+          </div>
+          <div class="col-12 m-2">
+            <button
+              id="borrowBookbtn"
+              class="btn w-100 btn-success"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+              "
+              type="button"
+              onclick="ShowBorrow()"
+            >
+              Borrow Book
+            </button>
+          </div>
+          <form id="borrowBookform" class="p-3 m-3" style="display: none">
+            <div class="form-floating m-2">
+              <input
+                type="text"
+                class="form-control"
+                id="borrowBooktitle"
+                required
+              />
+              <label for="borrowBooktitle">Book Title</label>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success fw-bold m-2"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                border: none;
+              "
+            >
+              Borrow Book
+            </button>
+          </form>
+          <div class="col-12 m-2">
+            <button
+              id="returnBookbtn"
+              class="btn w-100 btn-success"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                border: none;
+              "
+              type="button"
+              onclick="ShowReturn()"
+            >
+              Return Book
+            </button>
+          </div>
+          <form id="returnBookform" class="p-3 m-3" style="display: none">
+            <div class="form-floating m-2">
+              <input
+                type="text"
+                class="form-control"
+                id="returnBooktitle"
+                required
+              />
+              <label for="returnBooktitle">Book Title</label>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-success fw-bold m-2"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                border: none;
+              "
+            >
+              Return Book
+            </button>
+          </form>
+          <div class="col-12 m-2">
+            <button
+              class="btn w-100 btn-success"
+              style="
+                background: linear-gradient(90deg, #1d4b88, rgb(93, 51, 15));
+                border: none;
+              "
+              type="button"
+              onclick="showReport(library)"
+            >
+              Show Report
+            </button>
+            <div id="report"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script>
+      let library = [];
       let setBookStatus = function (book) {
         let bookStatus;
         if (book.AvailableCopies > 2) bookStatus = "Available";
@@ -19,15 +203,15 @@
         return null;
       };
       let addBook = function (library) {
-        let bookTitle = prompt("Enter the book title:");
-        let authorName, newbook;
+        let bookTitle = document.getElementById("addTitle").value;
+        let authorName = document.getElementById("addbookauthor").value;
+        let newbook;
         if (!bookTitle) {
           alert("Book Title Cannot be Empty");
           return;
         }
-        authorName = prompt("Enter Author Name:");
         newbook = searchBook(library, bookTitle);
-        let numberCopies = parseInt(prompt("Enter No of Copies"));
+        let numberCopies = parseInt(document.getElementById("addcopies").value);
         if (numberCopies < 0) {
           alert("No of copies Cannot be negative");
           return;
@@ -43,13 +227,14 @@
           };
           setBookStatus(book);
           library.push(book);
+          alert("New book is added");
         } else {
           newbook.AvailableCopies += numberCopies;
           alert(`the available copies is now ${newbook.AvailableCopies}`);
         }
       };
       let borrowBook = function (library) {
-        let bookTitle = prompt("Enter the book title:");
+        let bookTitle = document.getElementById("borrowBooktitle").value;
         if (!bookTitle) {
           alert("Book Title Cannot be Empty");
           return;
@@ -70,7 +255,7 @@
         alert("Book is Borrowed successfully");
       };
       let returnBook = function (library) {
-        let bookTitle = prompt("Enter the book title:");
+        let bookTitle = document.getElementById("returnBooktitle").value;
         if (!bookTitle) {
           alert("Book Title Cannot be Empty");
           return;
@@ -100,50 +285,105 @@
         return [available, borrowed];
       };
       let showReport = function (library) {
-        let report = "";
-        if (library.length == 0) {
-          alert("The library is empty");
+        document.getElementById("addBookform").style.display = "none";
+        document.getElementById("borrowBookform").style.display = "none";
+        document.getElementById("returnBookform").style.display = "none";
+        document.getElementById("report").style.display = "block";
+
+        let report_div = document.getElementById("report");
+        report_div.innerHTML = "";
+
+        if (library.length === 0) {
+          report_div.innerHTML = `
+      <div class="alert alert-danger text-center">
+        The library is empty
+      </div>
+    `;
           return;
         }
-        for (book of library) {
-          report += `BookTitle :${book.BookTitle}\n
-          Book Author : ${book.AuthorName}\n
-          Available : ${book.AvailableCopies}\n
-          Borrowed : ${book.BorrowedCopies}\n
-          BookStatus : ${book.BookStatus}\n`;
-        }
-        let [totalAvailable, totalBorrowed] = calculateTotalBooks(library);
-        report += `Total Availbale : ${totalAvailable}\n
-        Total Borrowed: ${totalBorrowed}`;
-        alert(report);
-      };
 
-      let library = [];
-      let loopflag = true;
-      while (loopflag) {
-        let choice = prompt(
-          "Enter your Action:\n1-Add book\t2-Borrow book\n3- Return book\t4- Display library report\n5-exit ",
-        );
-        switch (choice) {
-          case "1":
-            addBook(library);
-            break;
-          case "2":
-            borrowBook(library);
-            break;
-          case "3":
-            returnBook(library);
-            break;
-          case "4":
-            showReport(library);
-            break;
-          case "5":
-            loopflag = false;
-            break;
-          default:
-            alert("please enter a valid choice");
+        let table = `
+    <table class="table table-bordered table-striped text-center mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Available</th>
+          <th>Borrowed</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+        for (let book of library) {
+          table += `
+      <tr>
+        <td>${book.BookTitle}</td>
+        <td>${book.AuthorName}</td>
+        <td>${book.AvailableCopies}</td>
+        <td>${book.BorrowedCopies}</td>
+        <td>${book.BookStatus}</td>
+      </tr>
+    `;
         }
-      }
+
+        let [totalAvailable, totalBorrowed] = calculateTotalBooks(library);
+
+        table += `
+      </tbody>
+      <tfoot class="table-secondary fw-bold">
+        <tr>
+          <td colspan="2">Totals</td>
+          <td>${totalAvailable}</td>
+          <td>${totalBorrowed}</td>
+          <td>-</td>
+        </tr>
+      </tfoot>
+    </table>
+  `;
+
+        report_div.innerHTML = table;
+      };
+      let ShowAdd = function () {
+        document.getElementById("addBookform").style.display = "block";
+        document.getElementById("borrowBookform").style.display = "none";
+        document.getElementById("returnBookform").style.display = "none";
+        document.getElementById("report").style.display = "none";
+      };
+      let ShowBorrow = function () {
+        document.getElementById("addBookform").style.display = "none";
+        document.getElementById("borrowBookform").style.display = "block";
+        document.getElementById("returnBookform").style.display = "none";
+        document.getElementById("report").style.display = "none";
+      };
+      let ShowReturn = function () {
+        document.getElementById("addBookform").style.display = "none";
+        document.getElementById("borrowBookform").style.display = "none";
+        document.getElementById("report").style.display = "none";
+        document.getElementById("returnBookform").style.display = "block";
+      };
+      document
+        .getElementById("addBookform")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          addBook(library);
+        });
+      document
+        .getElementById("borrowBookform")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          borrowBook(library);
+        });
+      document
+        .getElementById("returnBookform")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          returnBook(library);
+        });
     </script>
   </body>
 </html>
