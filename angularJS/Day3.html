@@ -1,0 +1,50 @@
+<html ng-app="MyApp">
+  <head>
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="myCtrl">
+      <p>{{name | uppercase}}</p>
+      <p>{{today | date:'fullDate'}}</p>
+      <p>{{price | currency:'$'}}</p>
+      <p>{{name | reverse}}</p>
+      <p>{{name | capitalize}}</p>
+      <p>{{name | choose:'2'}}</p>
+    </div>
+  </body>
+  <script>
+    var app = angular.module("MyApp", []);
+    app.controller("myCtrl", function ($scope) {
+      $scope.name = "angular";
+      $scope.today = new Date();
+      $scope.price = 300;
+    });
+    app.filter("reverse", function () {
+      return function (input) {
+        return input.split("").reverse().join("");
+      };
+    });
+    app.filter("capitalize", function () {
+      return function (input) {
+        let first = input.substring(0, 1);
+        let remain = input.substring(1);
+        return first.toUpperCase() + remain;
+      };
+    });    
+    app.filter("choose", function () {
+      return function (input,a) {
+        switch (a){
+          case '1':
+            let first = input.substring(0, 1);
+        let remain = input.substring(1);
+        return first.toUpperCase() + remain;
+        break;
+        case '2':
+          return input.split("").reverse().join("");
+        break;
+        }
+        
+      };
+    });
+  </script>
+</html>

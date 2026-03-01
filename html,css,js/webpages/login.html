@@ -89,12 +89,27 @@
               <input
                 type="email"
                 class="form-control"
-                id="floatingInput"
+                id="email"
                 placeholder="name@example.com"
                 onblur="checkEmail()"
                 required
               />
-              <label for="floatingInput">Email address</label>
+              <label for="email">Email address</label>
+            </div>
+            <span
+              id="email_error"
+              style="font-size: smaller; width: 100px"
+            ></span>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="name@example.com"
+                onblur="checkEmail()"
+                required
+              />
+              <label for="username">Username</label>
             </div>
             <span
               id="email_error"
@@ -122,12 +137,21 @@
               </label>
             </div>
             <p></p>
-            <button type="submit" class="btn w-100 btn-success fw-bold" style="background: linear-gradient(90deg, #1d4b88, #27ae60); border: none;">Login</button>
+            <button
+              type="submit"
+              class="btn w-100 btn-success fw-bold"
+              style="
+                background: linear-gradient(90deg, #1d4b88, #27ae60);
+                border: none;
+              "
+            >
+              Login
+            </button>
           </form>
         </div>
       </div>
     </section>
-    <footer style="margin-top:12% ;">
+    <footer style="margin-top: 12%">
       <p>© 2026 Your Company Name. All Rights Reserved.</p>
     </footer>
     <script
@@ -136,12 +160,23 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      const api_url =
+        "https://mkxzgvwvftzimaugwzvn.supabase.co/rest/v1/Clients";
+      const api_key = "sb_publishable_EY8_jS3efnS8mEt2aFGoHA_gDkN6K8v";
+      const auth = "bearer " + api_key;
+      headers = {
+        apikey: api_key,
+        Authorization: auth,
+        "Content-Type": "application/json",
+      };
+
       document
         .getElementById("loginForm")
         .addEventListener("submit", function (event) {
           checkEmail();
           checkPassword();
-
+          checkUserpass();
+          event.preventDefault();
           let email_error = document.getElementById("email_error");
           let password_error = document.getElementById("password_error");
 
@@ -150,7 +185,7 @@
           }
         });
       function checkEmail() {
-        let input = document.getElementById("floatingInput");
+        let input = document.getElementById("email");
         let email_error = document.getElementById("email_error");
 
         if (input.value === "") {
@@ -169,18 +204,35 @@
       function checkPassword() {
         let input = document.getElementById("floatingPassword");
         let password_error = document.getElementById("password_error");
-        if (input.value === "") {
-          password_error.textContent = "Password cannot be empty!";
-          password_error.style.color = "red";
-          password_error.hidden = false;
-        } else if (input.value.length <= 6) {
-          password_error.textContent = "Password Must be More than 6 char!";
-          password_error.style.color = "red";
-          password_error.hidden = false;
-        } else {
-          password_error.hidden = true;
+        try {
+          if (input.value.length < 8) {
+            throw new Error("Password Cant be less than 8 char");
+          } else {
+            password_error.hidden = true;
+          }
+        } catch (error) {
+          alert(error.message);
         }
       }
+
+      let getUsername = async function (username) {
+        let username_url = api_url + "?email_address=eq." + username;
+        let username_res = await fetch(username_url, { headers });
+        let username_data = await username_res.json();
+        return username_data;
+      };
+      let checkUserpass = async function () {
+        let username_entered = document.getElementById("email").value;
+        let username_checked = await getUsername(username_entered);
+        console.log(username_checked);
+        let password_entered =
+          document.getElementById("floatingPassword").value;
+        if (username_checked[0]["password"] == password_entered) {
+          alert("welcome");
+        } else {
+          alert("try again");
+        }
+      };
     </script>
   </body>
 </html>

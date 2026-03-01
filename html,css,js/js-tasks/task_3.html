@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <script>
+      function getWeather(city) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (city == "paris") {
+              resolve("Success");
+            } else {
+              reject("error");
+            }
+          }, 2000);
+        });
+      }
+
+      async function Weather(city) {
+        try {
+          console.log("loading....");
+          const result = await getWeather(city);
+          console.log(result);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      function weather(city) {
+        console.log("loading....");
+
+        getWeather(city)
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      Weather("paris");
+    console.log("....");
+      
+    </script>
+  </body>
+</html>

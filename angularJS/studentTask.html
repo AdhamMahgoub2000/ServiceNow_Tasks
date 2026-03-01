@@ -1,0 +1,158 @@
+<!doctype html>
+<html ng-app="loginApp">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+      body {
+        background: #f5f7fa;
+      }
+      .login-card {
+        margin-top: 80px;
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body ng-controller="LoginController">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 login-card">
+          <h3 class="text-center">Student Login</h3>
+          <hr />
+
+          <form name="loginForm" novalidate>
+            <div
+              class="form-group"
+              ng-class="{'has-error': loginForm.name.$touched && loginForm.name.$invalid}"
+            >
+              <label>Student Name</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                ng-model="name"
+                required
+              />
+            </div>
+            <div
+              class="form-group"
+              ng-class="{'has-error': loginForm.age.$touched && loginForm.age.$invalid}"
+            >
+              <label>Student Age</label>
+              <input
+                type="number"
+                name="age"
+                class="form-control"
+                ng-model="age"
+                required
+              />
+            </div>
+            <div
+              class="form-group"
+              ng-class="{'has-error': loginForm.number.$touched && loginForm.number.$invalid}"
+            >
+              <label>Student Number</label>
+              <input
+                type="text"
+                name="number"
+                class="form-control"
+                ng-model="number"
+                required
+              />
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="agree" />
+                I agree to terms
+              </label>
+            </div>
+            <button
+              class="btn btn-primary btn-block"
+              ng-click="login()"
+              ng-disabled="loginForm.$invalid"
+            >
+              ADD Student
+            </button>
+          </form>
+
+          <hr />
+          <div ng-if="loggedIn">
+            <h4>Welcome, {{outputName}}</h4>
+
+            <div class="alert alert-success" ng-show="agree">
+              Thank you for agreeing to the terms.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="login-card col-lg-6 col-md-offset-3">
+          <table class="table table-hover" id="allBookings">
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Student Name</th>
+                <th>Student Age</th>
+                <th>Student Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-if="!studentObjs.length">
+                <td colspan="4" class="text-center">No student added yet</td>
+              </tr>
+              <tr ng-repeat="studentObj in studentObjs track by $index">
+                <td>{{$index+1}}</td>
+                <td>{{studentObj.name}}</td>
+                <td>{{studentObj.age}}</td>
+                <td>{{studentObj.number}}</td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    ng-click="removeStudent($index)"
+                  >
+                    remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      angular
+        .module("loginApp", [])
+        .controller("LoginController", function ($scope) {
+          $scope.loggedIn = false;
+          $scope.login = function () {
+            $scope.loggedIn = true;
+            let newStudent = {
+              name: $scope.name,
+              age: $scope.age,
+              number: $scope.number,
+            };
+            $scope.studentObjs.push(newStudent);
+            $scope.name = "";
+            $scope.age = "";
+            $scope.number = "";
+          };
+          $scope.removeStudent = function (index) {
+            $scope.studentObjs.splice(index, 1);
+          };
+          $scope.studentObjs = [];
+        });
+    </script>
+  </body>
+</html>
